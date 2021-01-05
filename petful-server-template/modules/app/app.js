@@ -1,11 +1,19 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const { NODE_ENV } = require('./config');
+const peopleRouter = require('../people/people.router');
+const petRouter = require('../pets/pets.router');
+const app = express();
 
-const app = express()
+app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
+  skip: () => NODE_ENV === 'test',
+}));
+app.use(helmet());
+app.use(cors());
 
-app.use(cors())
+app.use('/people', peopleRouter);
+app.use('/pets', petRouter);
 
-app.use('/people', require('../people/people.router'))
-app.use('/pets', require('../pets/pets.router'))
-
-module.exports = app
+module.exports = app;
