@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Root() {
+function App() {
   return <div>
     <h1>Petful</h1>
   </div>
 }
 
-export default Root
+export default App
