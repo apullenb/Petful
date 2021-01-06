@@ -12,8 +12,10 @@ router.get('/', (req, res) => {
     .status(200);
 });
 
-router.delete('/', json, (req, res) => {
-  const { type } = req.body;
+router.delete('/:type', json, (req, res) => {
+ 
+   const {type} = req.params;
+   console.log(type);
   Pets.dequeue(type);
   People.dequeue();
   return res

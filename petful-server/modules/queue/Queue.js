@@ -1,4 +1,4 @@
-class _Node {
+class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
@@ -11,7 +11,7 @@ class Queue {
   }
 
   enqueue(data) {
-    const node = new _Node(data);
+    const node = new Node(data);
 
     if (this.first === null) {
       this.first = node;
