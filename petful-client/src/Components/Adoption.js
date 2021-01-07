@@ -27,19 +27,64 @@ function Adoption() {
     
       let countdown = setInterval(() => {
         if (people.length < 2) {
-        //   addToQueue();    
+          addToQueue();    
           return clearInterval(countdown);
       }
-        fetch(`${config.API_ENDPOINT}/pets/${type}`, {
-          method: "DELETE",
-          header: {
-            "content-type": "application/json"}, 
-          }) 
-        .then(() => setType(type === 'dog' ? 'cat' : 'dog'))
-        
-       
-      }, 10000);
+      console.log(type)
+        petAdopted();
+      }, 150000);
     
+      addToQueue = () => {
+        let peopleNames = [
+          "Rachel",
+          "Larry Horan",
+          "Niall",
+          "Tanner Fue",
+          "Lacy Green",
+          "Ethan",
+        ];
+    
+        let addPeople = setInterval(() => {
+          if (people.length > 4) {
+            return clearInterval(addPeople);
+          }
+    
+          let index = Math.floor(Math.random() * peopleNames.length);
+          let person = peopleNames[index];
+
+          fetch(`${config.API_BASE_URL}/people`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ person }),
+          })
+            .then((res) => res.json())
+            .then(() => this.fetchData());
+        }, 20000);
+      };
+
+      petAdopted = () => {
+        if (type === 'cat') {
+          fetch(`${config.API_BASE_URL}/pets/cat`, {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            }
+          })
+          .then(() => getPets())
+          .then(setType('dog'));
+        } else {
+          fetch(`${config.API_BASE_URL}/pets/dog`, {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            },
+          })
+          .then(() => getPets())
+          .then(setType('cat'))
+        }
+      };
     return (
         <div className ='pets'>
              <section className='petcard'>
