@@ -2,10 +2,7 @@ module.exports = {
   people: [
     'Randy Lahey',
     'Trevor Cory',
-    'Jim Lahey',
-    'Tony Robbins',
     'Johhny Depp',
-    'Steve Austin'
   ],
 
   dogs: [

@@ -98,6 +98,8 @@ function People(props) {
            <p>{people[4]}</p>
            <p>{people[5]}</p>
            </section>
+           <h4>Total People In Line: </h4>
+           <h3 style={{color:'red'}}>{people.length}</h3>
         </div>
     )
     }

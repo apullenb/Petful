@@ -15,6 +15,14 @@ module.exports = {
       cat: [pets.cats.all()],
       dog: [pets.dogs.all()],
     };
+    if(pet.dog[0].length < 3) {
+      ('refreshing store')
+      store.dogs.forEach(dog => pets.dogs.enqueue(dog));
+    }
+    if(pet.cat[0].length < 3) {
+      console.log('refreshing store')
+      store.cats.forEach(cat => pets.cats.enqueue(cat));
+    }
     return pet;
   },
   dequeue(type) {
