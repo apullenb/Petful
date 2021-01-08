@@ -1,91 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import config from '../config'
-
+import People from './People'
+import WaitingList from './WaitingList';
 
 function Adoption() {
 
-    const [cats, setCats] = useState('Loading')
+    
     const [dogs, setDogs] = useState('Loading')
-    const [people, setPeople] = useState('Loading')
-    const [type, setType] = useState('dog')
+    const [cats, setCats] = useState('Loading')
+  console.log(cats)
     async function getPets() {
-        try {
-          const response = await fetch(`${config.API_ENDPOINT}/pets`);
-          const parseRes = await response.json();
-          setCats(parseRes.cat);
-          setDogs(parseRes.dog);
-          const people = await fetch(`${config.API_ENDPOINT}/people`);
-          const pepRes = await people.json();  
-          setPeople(pepRes)
-    } catch (error) {
-        console.error(error.message);
-      }
+      try {
+        const response = await fetch(`${config.API_ENDPOINT}/pets`);
+        const parseRes = await response.json();
+        setCats(parseRes.cat[0]);
+        setDogs(parseRes.dog[0])
+  } catch (error) {
+      console.error(error.message);
     }
+  }
+   
     useEffect(() => {
-        getPets();
+       getPets()
+       let countdown = setInterval(petAdopted, 6000);
+       return () => {
+        clearInterval(countdown)
+    }
       }, []);
-    
-      let countdown = setInterval(() => {
-        if (people.length < 2) {
-          addToQueue();    
-          return clearInterval(countdown);
-      }
+     
+      
+      
+     function petAdopted (){
+      let type = Math.floor(Math.random() * 8.3)
       console.log(type)
-        petAdopted();
-      }, 150000);
-    
-      addToQueue = () => {
-        let peopleNames = [
-          "Rachel",
-          "Larry Horan",
-          "Niall",
-          "Tanner Fue",
-          "Lacy Green",
-          "Ethan",
-        ];
-    
-        let addPeople = setInterval(() => {
-          if (people.length > 4) {
-            return clearInterval(addPeople);
-          }
-    
-          let index = Math.floor(Math.random() * peopleNames.length);
-          let person = peopleNames[index];
-
-          fetch(`${config.API_BASE_URL}/people`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({ person }),
-          })
-            .then((res) => res.json())
-            .then(() => this.fetchData());
-        }, 20000);
-      };
-
-      petAdopted = () => {
-        if (type === 'cat') {
-          fetch(`${config.API_BASE_URL}/pets/cat`, {
+        if (type > 3) {
+          fetch(`${config.API_ENDPOINT}/pets/cat`, {
             method: "DELETE",
             headers: {
               "content-type": "application/json",
-            }
-          })
-          .then(() => getPets())
-          .then(setType('dog'));
+            }    
+          })  .then(getPets)
         } else {
-          fetch(`${config.API_BASE_URL}/pets/dog`, {
+          fetch(`${config.API_ENDPOINT}/pets/dog`, {
             method: "DELETE",
             headers: {
               "content-type": "application/json",
             },
           })
-          .then(() => getPets())
-          .then(setType('cat'))
+          .then(getPets)
         }
+        
       };
+    
     return (
+      <div>
         <div className ='pets'>
              <section className='petcard'>
             <h3 className='name'>Name: {cats[0].name} </h3>
@@ -97,7 +65,6 @@ function Adoption() {
             <p>Gender: {cats[0].gender}</p>
             <p>My Story: {cats[0].story}</p>
             </div>
-            <button>Adopt Me!</button>
             </section>
             </section>
             <section className='petcard'>
@@ -110,9 +77,12 @@ function Adoption() {
             <p>Gender: {dogs[0].gender}</p>
             <p>My Story: {dogs[0].story}</p>
             </div>
-            <button>Adopt Me!</button>
+
             </section>
             </section>
+        </div>
+        <WaitingList dog={dogs[0]} cat={cats[0]} />
+     
         </div>
     )
 }

@@ -12,8 +12,8 @@ store.dogs.forEach(dog => pets.dogs.enqueue(dog));
 module.exports = {
   get() {
     let pet = {
-      cat: [pets.cats.show()],
-      dog: [pets.dogs.show()],
+      cat: [pets.cats.all()],
+      dog: [pets.dogs.all()],
     };
     return pet;
   },

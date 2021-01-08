@@ -4,15 +4,17 @@ import LandingPage from '../Pages/LandingPage'
 import Adopt from '../Pages/Adopt'
 import About from '../Pages/About'
 import '../index.css'
+import Confirm from '../Pages/Confirm';
+import Header from './Header';
 
 function App() {
 
 
   return (
-  <div>
+  <div className='app'>
    <header>
         <Link to={"/"}>
-          <h1 className="petful">PETFUL</h1>
+          <Header />
         </Link>
       </header>
 
@@ -20,6 +22,7 @@ function App() {
         <Route exact path={"/"} component={LandingPage} />
         <Route exact path={"/about"} component={About} />
         <Route exact path={"/adopt"} component={Adopt} />
+        <Route exact path={"/Confirmation"} component={Confirm} />
       </Switch>
     
   </div>

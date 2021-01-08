@@ -19,4 +19,11 @@ router.post('/', json, (req, res) => {
     .json(person);
 });
 
+router.delete('/', json, (req, res) => {
+  People.dequeue();
+  return res
+    .status(204)
+    .end();
+});
+
 module.exports = router;

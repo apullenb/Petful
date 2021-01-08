@@ -8,10 +8,8 @@ function LandingPage() {
           <h1>Welcome to Petful</h1>
         </div>
         <div className="title">
-          <h2> The Process of Adopting From Us</h2>
-          <p className="text">
-            Hello there! Are you ready to find your Purfect friend?
-          </p>
+          <h3>Hello there! Are you ready to find your new forever friend?</h3>
+            <h2> The Process of Adopting From Us</h2>
           <p className="text">
             Pets will be adopted based on a first come, first adopt concept. The
             animal that comes into our shelter first will be the first animal
