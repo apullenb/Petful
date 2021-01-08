@@ -8,7 +8,7 @@ function Adoption() {
     
     const [dogs, setDogs] = useState('Loading')
     const [cats, setCats] = useState('Loading')
-  console.log(cats)
+ 
     async function getPets() {
       try {
         const response = await fetch(`${config.API_ENDPOINT}/pets`);
@@ -32,7 +32,7 @@ function Adoption() {
       
      function petAdopted (){
       let type = Math.floor(Math.random() * 8.3)
-      console.log(type)
+      
         if (type > 3) {
           fetch(`${config.API_ENDPOINT}/pets/cat`, {
             method: "DELETE",

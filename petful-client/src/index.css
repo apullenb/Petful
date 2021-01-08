@@ -7,11 +7,52 @@ body {
 }
 .app {
     background-color: white;
-    padding: 10px
+    padding: 12px
 }
+.header {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color:#01333b ;
+    color: white;
+    font-size: 50px;
+   text-align: center;
+   font-weight: 600;
+   padding:25px;
+}
+.nav {
+    margin-top:20px;
+    margin-bottom: 0px;
+    display: block;
+    float: center;
+    width: 250px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+  text-decoration: none;
+  text-align: center;
+  
+  color: rgb(255, 255, 255);
+ padding:1px;
 
-a {
+  } 
+  nav :hover {
+    background-color:rgb(255, 255, 255);
+    color:#01333b;
+    font-weight: 600;
+    box-shadow: 0px 1px 1px 1px white;
+    cursor: pointer;
+    }
+header a {
    text-decoration: none;
+   color:white;
+   padding:8px;
+   background-color:#194c55;
+   margin:3px;
+   text-align: center;
+ 
 }
 
 button {
@@ -59,14 +100,19 @@ img {
     padding: 5px;
 }
 .intro {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    font-size: 18px;
-    padding-left: 3px;
-    padding-right: 5px;
+    text-align: center;
+    color:#01333b;
+    padding: 10px;
+    border: 2px solid #01333b;
+}
+.intro h1 {
+    font-size: 38px;
+}
+.intro h3 {
+    font-size: 27px;
+}
+.intro img {
+    width: 400px;
 }
 .info {
     display: flex;
@@ -78,9 +124,7 @@ img {
     padding-left: 3px;
     padding-right: 5px;
 }
-.title {
-    margin: 3%
-}
+
 .pets {
     display:flex;
     flex-direction: row;
@@ -112,22 +156,40 @@ img {
     color:#01333b;
     z-index: 1;
     right: 35%;
-    bottom:45%;
+    bottom:25%;
     width: 30%;
-    border:#01333b 1px solid;
+    border:#01333b 2px solid;
     text-align: center;
-    padding:55px;
+    padding:65px;
     box-shadow: 1px 1px 3px gray;
    
 }
-.header {
-    background-color:#01333b ;
-    color: white;
-    font-size: 50px;
-   text-align: center;
-   font-weight: 600;
-   padding:45px;
+.title {
+    margin-left:7%;
+    margin-right: 7%;
+    font-size: 19px;
+    border-bottom: #01333b 1px solid;
+    margin-bottom: 15px;
 }
+.title h3 {
+    font-size: 25px;
+}
+.more {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #eff1f1;
+    box-shadow: #677172 1px 2px 3px 1px;
+    margin-right:15%;
+    margin-left: 15%;
+    margin-bottom:5%;
+    padding-left:35px;
+    padding-right:35px;
+    padding-bottom:25px;
+}
+
 .adoption {
     display:flex;
     flex-direction: row;
@@ -149,6 +211,9 @@ img {
 }
 @media all and (max-width: 800px) {
 body {
-    margin: 3px;
+    margin: 2px;
+}
+.intro img {
+    width: 285px;
 }
 }

@@ -33,12 +33,20 @@ function People(props) {
         let peopleNames = [
             "John Jacob",
             "Hugh Jackman",
-          "Mr. Peabody",
-          "Zac Effron",
-          "Leonardo DiCaprio",
+             "Mr. Peabody",
+             "Zac Effron",
+           "Leonardo DiCaprio",
+           "Hulk Hogan",
+           "Britney Spears",
+           "Steven Jacob",
+           "Jennifer Aniston",
+           "Johnny Depp",
+           "Jessica Biel",
+           "Liam Hemsworth",
+           "Malibu Barbie"
         ];
        
-          let index = Math.floor(Math.random()*5)
+          let index = Math.floor(Math.random()* people.length)
           let person = peopleNames[index];
 
           fetch(`${config.API_ENDPOINT}/people`, {
@@ -74,7 +82,7 @@ function People(props) {
     }
   }
 
-        console.log(people[1], people[0], currUser) 
+        
     return (
         <div>
             <section>

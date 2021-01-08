@@ -3,7 +3,7 @@ import config from '../config'
 import People from './People'
 function WaitingList(props) {
   let pets = props
-    console.log(pets)
+    
     const [name, setName] = useState('Name..')
     const [text, setText] = useState('')
     const [form, setForm] = useState('waiting-list')

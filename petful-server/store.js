@@ -3,8 +3,9 @@ module.exports = {
     'Randy Lahey',
     'Trevor Cory',
     'Jim Lahey',
-    'Mr. Peabody',
-    'Zac Effron',
+    'Tony Robbins',
+    'Johhny Depp',
+    'Steve Austin'
   ],
 
   dogs: [

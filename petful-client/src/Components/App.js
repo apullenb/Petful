@@ -13,9 +13,7 @@ function App() {
   return (
   <div className='app'>
    <header>
-        <Link to={"/"}>
           <Header />
-        </Link>
       </header>
 
       <Switch>
