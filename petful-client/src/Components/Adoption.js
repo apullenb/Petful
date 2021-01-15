@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import config from '../config'
+import { addPerson, deleteCat, deleteDog, deletePerson } from '../helpers';
 import People from './People'
 import WaitingList from './WaitingList';
 
@@ -8,7 +9,18 @@ function Adoption() {
     
     const [dogs, setDogs] = useState('Loading')
     const [cats, setCats] = useState('Loading')
- 
+    const [people, setPeople] = useState('Loading')
+  
+    async function getPeople() {
+        try {
+          const response = await fetch(`${config.API_ENDPOINT}/people`);
+          const parseRes = await response.json(); 
+          setPeople(parseRes)
+          
+    } catch (error) {
+        console.error(error.message);
+      }
+    }
     async function getPets() {
       try {
         const response = await fetch(`${config.API_ENDPOINT}/pets`);
@@ -22,6 +34,7 @@ function Adoption() {
    
     useEffect(() => {
        getPets()
+       getPeople()
        let countdown = setInterval(petAdopted, 6000);
        return () => {
         clearInterval(countdown)
@@ -34,20 +47,17 @@ function Adoption() {
       let type = Math.floor(Math.random() * 8.3)
       
         if (type > 3) {
-          fetch(`${config.API_ENDPOINT}/pets/cat`, {
-            method: "DELETE",
-            headers: {
-              "content-type": "application/json",
-            }    
-          })  .then(getPets)
+          deleteCat()
+          deletePerson()
+          addPerson()
+          getPeople()
+         getPets()
         } else {
-          fetch(`${config.API_ENDPOINT}/pets/dog`, {
-            method: "DELETE",
-            headers: {
-              "content-type": "application/json",
-            },
-          })
-          .then(getPets)
+        deleteDog()
+        deletePerson()
+        addPerson()
+        getPeople()
+          getPets()
         }
         
       };
@@ -81,7 +91,7 @@ function Adoption() {
             </section>
             </section>
         </div>
-        <WaitingList dog={dogs[0]} cat={cats[0]} />
+        <WaitingList dog={dogs[0]} cat={cats[0]} people={people}/>
      
         </div>
     )

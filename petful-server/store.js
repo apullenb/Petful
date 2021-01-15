@@ -303,26 +303,8 @@ module.exports = {
       name: 'Daisy',
       story: 'Thrown on the street',
     },
-    {
-      age: 2,
-      breed: 'Tabby',
-      description: 'grey cat',
-      gender: 'Male',
-      imageURL:
-        'https://images.pexels.com/photos/923360/pexels-photo-923360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Spike',
-      story: 'Thrown on the street',
-    },
-    {
-      age: 2,
-      breed: 'Bengal',
-      description: 'Orange bengal cat with black stripes lounging on concrete.',
-      gender: 'Female',
-      imageURL:
-        'https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Steve French',
-      story: 'Thrown on the street',
-    },
+    
+    
     {
       age: 3,
       breed: 'Tabby',

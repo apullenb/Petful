@@ -34,7 +34,7 @@ function WaitingList(props) {
           <div><button onClick={addToList}>Join Waiting List</button>
           </div>
           </div>
-          <People user={username} pet={pets}/>
+          <People user={username} pet={pets} people={props.people}/>
         </div>
     )
 }

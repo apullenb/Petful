@@ -5,65 +5,11 @@ import { Link } from "react-router-dom";
 function People(props) {
        const dog = props.pet.dog
        const cat = props.pet.cat
+       const people = props.people
         const currUser = props.user
-    const [people, setPeople] = useState('Loading')
-  
-    async function getPeople() {
-        try {
-          const response = await fetch(`${config.API_ENDPOINT}/people`);
-          const parseRes = await response.json(); 
-          setPeople(parseRes)
-          
-    } catch (error) {
-        console.error(error.message);
-      }
-    }
    
-    useEffect(() => {
-        getPeople();
-        let countdown =  setInterval(() => {
-           addToQueue();     
-        }, 5000);
-        return () => {
-            clearInterval(countdown)
-        }
-     }, []);
   
-     function addToQueue() {
-        let peopleNames = [
-            "John Jacob",
-            "Hugh Jackman",
-             "Mr. Peabody",
-             "Zac Effron",
-           "Leonardo DiCaprio",
-           "Hulk Hogan",
-           "Britney Spears",
-           "Steven Jacob",
-           "Jennifer Aniston",
-           "Johnny Depp",
-           "Jessica Biel",
-           "Liam Hemsworth",
-           "Malibu Barbie"
-        ];
-       
-          let index = Math.floor(Math.random()* people.length)
-          let person = peopleNames[index];
-
-          fetch(`${config.API_ENDPOINT}/people`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({ person }),
-          })
-          .then(fetch(`${config.API_ENDPOINT}/people`, {
-            method: "DELETE",
-            headers: {
-              "content-type": "application/json",
-            }
-        }))
-            .then(getPeople())
-        }
+    
   function adoptNow() {
     if (people[0] === currUser) {
         return <div className='adopt'>
