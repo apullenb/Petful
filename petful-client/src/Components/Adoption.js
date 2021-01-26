@@ -1,100 +1,104 @@
-import React, { useEffect, useState } from 'react';
-import config from '../config'
-import { addPerson, deleteCat, deleteDog, deletePerson } from '../helpers';
-import People from './People'
-import WaitingList from './WaitingList';
+import React, { Component } from "react";
+import config from "../config";
+import MyContext from "../Context";
+import {
+  addPerson,
+  deleteCat,
+  deleteDog,
+  deletePerson,
+  getPeople,
+  getPets,
+} from "../helpers";
+import People from "./People";
+import WaitingList from "./WaitingList";
 
-function Adoption() {
+class Adoption extends React.Component {
+  static contextType = MyContext;
+ 
+  fetchAll() {
+    getPeople().then((res) => this.context.setPeopleList(res));
+    getPets()
+      .then((res) => {
+        this.context.setDogList(res.dog[0]);
+        this.context.setCatList(res.cat[0]);
+      })
+      .then(() =>
+        this.setState({
+          currentCat: this.context.cats[0],
+          currentDog: this.context.dogs[0],
+        })
+      );
+  }
 
-    
-    const [dogs, setDogs] = useState('Loading')
-    const [cats, setCats] = useState('Loading')
-    const [people, setPeople] = useState('Loading')
-  
-    async function getPeople() {
-        try {
-          const response = await fetch(`${config.API_ENDPOINT}/people`);
-          const parseRes = await response.json(); 
-          setPeople(parseRes)
-          
-    } catch (error) {
-        console.error(error.message);
-      }
-    }
-    async function getPets() {
-      try {
-        const response = await fetch(`${config.API_ENDPOINT}/pets`);
-        const parseRes = await response.json();
-        setCats(parseRes.cat[0]);
-        setDogs(parseRes.dog[0])
-  } catch (error) {
-      console.error(error.message);
+  componentDidMount() {
+    this.fetchAll();
+    this.interval = setInterval(() => {
+      this.petAdopted();
+    }, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+  displayPetCard() {
+    if (this.context.cats[0] !== undefined) {
+      return <div className="pets">
+      <div className="petcard">
+        <h3 className="name">Name: {this.context.cats[0].name} </h3>
+        <section className="info">
+          <img src={this.context.cats[0].imageURL} />
+          <div>
+            <p>Age: {this.context.cats[0].age}</p>
+            <p>Breed: {this.context.cats[0].breed}</p>
+            <p>Gender: {this.context.cats[0].gender}</p>
+            <p>My Story: {this.context.cats[0].story}</p>
+          </div>
+        </section>
+      </div>
+      <section className="petcard">
+        <h3 className="name">Name: {this.context.dogs[0].name} </h3>
+        <section className="info">
+          <img src={this.context.dogs[0].imageURL} />
+          <div>
+            <p>Age: {this.context.dogs[0].age}</p>
+            <p>Breed: {this.context.dogs[0].breed}</p>
+            <p>Gender: {this.context.dogs[0].gender}</p>
+            <p>My Story: {this.context.dogs[0].story}</p>
+          </div>
+        </section>
+      </section>
+    </div>
+    } else {
+      return <div>'Loading, Please Wait'</div>
     }
   }
-   
-    useEffect(() => {
-       getPets()
-       getPeople()
-       let countdown = setInterval(petAdopted, 6000);
-       return () => {
-        clearInterval(countdown)
+  petAdopted() {
+    let type = Math.floor(Math.random() * 8.3);
+    if (type > 3) {
+      deleteCat();
+      deletePerson();
+      addPerson();
+      this.fetchAll();
+    } else {
+      deleteDog();
+      deletePerson();
+      addPerson();
+      this.fetchAll();
     }
-      }, []);
-     
-      
-      
-     function petAdopted (){
-      let type = Math.floor(Math.random() * 8.3)
-      
-        if (type > 3) {
-          deleteCat()
-          deletePerson()
-          addPerson()
-          getPeople()
-         getPets()
-        } else {
-        deleteDog()
-        deletePerson()
-        addPerson()
-        getPeople()
-          getPets()
-        }
-        
-      };
-    
+  }
+  render() {
     return (
       <div>
-        <div className ='pets'>
-             <section className='petcard'>
-            <h3 className='name'>Name: {cats[0].name} </h3>
-            <section className='info'>
-            <img src= {cats[0].imageURL} />
-            <div>
-            <p>Age: {cats[0].age}</p>
-            <p>Breed: {cats[0].breed}</p>
-            <p>Gender: {cats[0].gender}</p>
-            <p>My Story: {cats[0].story}</p>
-            </div>
-            </section>
-            </section>
-            <section className='petcard'>
-            <h3 className='name'>Name: {dogs[0].name} </h3>
-            <section className='info'>
-            <img src= {dogs[0].imageURL} />
-            <div>
-            <p>Age: {dogs[0].age}</p>
-            <p>Breed: {dogs[0].breed}</p>
-            <p>Gender: {dogs[0].gender}</p>
-            <p>My Story: {dogs[0].story}</p>
-            </div>
-
-            </section>
-            </section>
-        </div>
-        <WaitingList dog={dogs[0]} cat={cats[0]} people={people}/>
-     
-        </div>
-    )
+       {this.displayPetCard()}
+        <WaitingList
+          dog={this.context.dogs[0]}
+          cat={this.context.cats[0]}
+          people={this.context.people}
+          interval={this.interval}
+        />
+      </div>
+    );
+  }
 }
 
-export default Adoption
+export default Adoption;

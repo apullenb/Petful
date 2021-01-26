@@ -2,7 +2,7 @@ import React from 'react'
 
 function Confirm(props) {
     let pet = props.location.state
-    localStorage.setItem('token', pet.name);
+    console.log(props.location.state)
     return (
         <div className='confirm'>
            <h2>Congratulations!</h2>

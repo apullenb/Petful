@@ -22,10 +22,18 @@ export const addPerson = () => {
        "Johnny Depp",
        "Jessica Biel",
        "Liam Hemsworth",
-       "Malibu Barbie"
+       "Malibu Barbie",
+       "Johnny Cash",
+       "Steve Tyler",
+       "Mary Tyler Moore",
+       "Jessica Simpson",
+       "Drew Barrymore"
     ];
-    let math = Math.random() * 10 -1
-      let index = Math.round(math)
+    let math = (Math.random() * Math.random() * Math.random()) * 100 
+    if(math > 18){
+      math = math / 10
+    }  
+    let index = Math.round(math + 0.2 + 0.5)
       let person = peopleNames[index];
       console.log(index, person, math)
     fetch(`${config.API_ENDPOINT}/people`, {
@@ -54,4 +62,24 @@ export const deleteDog =() => {
 }
 
 
+export const getPeople = async function () {
+  try {
+    const response = await fetch(`${config.API_ENDPOINT}/people`);
+    const parseRes = await response.json(); 
+  
+    return parseRes
+    
+} catch (error) {
+  console.error(error.message);
+}
+}
 
+export const getPets = async function() {
+try {
+  const response = await fetch(`${config.API_ENDPOINT}/pets`);
+  const parseRes = await response.json();
+  return parseRes
+} catch (error) {
+console.error(error.message);
+}
+}

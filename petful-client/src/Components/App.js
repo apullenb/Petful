@@ -6,6 +6,7 @@ import About from '../Pages/About'
 import '../index.css'
 import Confirm from '../Pages/Confirm';
 import Header from './Header';
+import {MyContextProvider} from '../Context'
 
 function App() {
 
@@ -15,14 +16,14 @@ function App() {
    <header>
           <Header />
       </header>
-
+      <MyContextProvider>
       <Switch>
         <Route exact path={"/"} component={LandingPage} />
         <Route exact path={"/about"} component={About} />
         <Route exact path={"/adopt"} component={Adopt} />
         <Route exact path={"/Confirmation"} component={Confirm} />
       </Switch>
-    
+      </MyContextProvider>
   </div>
   )
 }

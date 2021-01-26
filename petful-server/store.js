@@ -107,16 +107,7 @@ module.exports = {
       name: 'Tiny',
       story: 'Found downtown',
     },
-    {
-      age: 3,
-      breed: 'Akita',
-      description: 'A smiling golden-brown dog',
-      gender: 'Female',
-      imageURL:
-        'https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Fran',
-      story: 'Found downtown',
-    },
+    
     {
       age: 3,
       breed: 'Golden Retriever',
@@ -137,16 +128,7 @@ module.exports = {
       breed: 'Pug',
       story: 'Owner Passed away',
     },
-    {
-      age: 3,
-      breed: 'Akita',
-      description: 'A smiling golden-brown dog',
-      gender: 'Female',
-      imageURL:
-        'https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Fran',
-      story: 'Found downtown',
-    },
+  
     {
       age: 3,
       breed: 'Fluffy Dog',
@@ -167,16 +149,7 @@ module.exports = {
       name: 'Tim',
       story: 'Found in neighborhood',
     },
-    {
-      age: 3,
-      breed: 'Akita',
-      description: 'A smiling golden-brown dog',
-      gender: 'Female',
-      imageURL:
-        'https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Fran',
-      story: 'Found downtown',
-    },
+ 
   ],
 
   cats: [
@@ -190,16 +163,7 @@ module.exports = {
       name: 'Steve French',
       story: 'Thrown on the street',
     },
-    {
-      age: 3,
-      breed: 'Tabby',
-      description: 'boxer dog',
-      gender: 'Male',
-      imageURL:
-        'https://images.pexels.com/photos/1472999/pexels-photo-1472999.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Vince the Pince',
-      story: 'Found in neighborhood',
-    },
+   
     {
       age: 2,
       breed: 'white cat',
@@ -240,26 +204,6 @@ module.exports = {
       imageURL:
         'https://images.pexels.com/photos/126407/pexels-photo-126407.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
       name: 'Neapolitan Charlie',
-      story: 'Thrown on the street',
-    },
-    {
-      age: 3,
-      breed: 'Tabby',
-      description: 'boxer dog',
-      gender: 'Male',
-      imageURL:
-        'https://images.pexels.com/photos/1472999/pexels-photo-1472999.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Vince the Pince',
-      story: 'Found in neighborhood',
-    },
-    {
-      age: 2,
-      breed: 'Tabby',
-      description: 'Orange bengal cat with black stripes lounging on concrete.',
-      gender: 'Female',
-      imageURL:
-        'https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      name: 'Daisy',
       story: 'Thrown on the street',
     },
     {
