@@ -16,6 +16,9 @@ class Adoption extends React.Component {
   static contextType = MyContext;
  
   fetchAll() {
+    if(this.context.people.length < 2) {
+      addPerson()
+    }
     getPeople().then((res) => this.context.setPeopleList(res));
     getPets()
       .then((res) => {
@@ -69,7 +72,7 @@ class Adoption extends React.Component {
       </section>
     </div>
     } else {
-      return <div>'Loading, Please Wait'</div>
+      return <h3>Loading, Please Wait</h3>
     }
   }
   petAdopted() {

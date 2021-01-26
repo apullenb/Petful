@@ -29,13 +29,16 @@ export const addPerson = () => {
        "Jessica Simpson",
        "Drew Barrymore"
     ];
-    let math = (Math.random() * Math.random() * Math.random()) * 100 
-    if(math > 18){
-      math = math / 10
+    let mathA = (Math.random() * Math.random())
+    let mathB = Math.random() * 10
+    let math = (mathA * mathB) * 10
+    console.log(mathA, mathB, math) 
+    if(math >= 18){
+      math = (math / 10) + 0.5
     }  
     let index = Math.round(math + 0.2 + 0.5)
       let person = peopleNames[index];
-      console.log(index, person, math)
+      console.log(index, person)
     fetch(`${config.API_ENDPOINT}/people`, {
         method: "POST",
         headers: {

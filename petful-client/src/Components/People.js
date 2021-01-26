@@ -18,9 +18,9 @@ function People(props) {
             <h2>{currUser},</h2>
             <h2>Ready to Adopt?</h2>
             <Link
-            to={{ pathname: "/Confirmation", state: [cat, currUser], }}><button> Adopt Cat Now! </button></Link>
+            to={{ pathname: "/Confirmation", state: [cat, currUser, 'cat'], }}><button> Adopt Cat Now! </button></Link>
               <Link
-            to={{ pathname: "/Confirmation", state: [dog, currUser] }}><button> Adopt Dog Now! </button></Link>
+            to={{ pathname: "/Confirmation", state: [dog, currUser, 'dog'] }}><button> Adopt Dog Now! </button></Link>
             </div>
     }
     if (people[1] === currUser){
